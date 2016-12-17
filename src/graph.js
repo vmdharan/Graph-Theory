@@ -3,6 +3,8 @@
  * Define the graph structure.
  */
 
+var exports = module.exports = {};
+
 // Edge
 var Edge = function(w, s, d) {
 	this.weight = w,
@@ -34,13 +36,6 @@ Graph.prototype.addEdge = function(w, s, d) {
 	this.E.push(new Edge(w,s,d));
 }
 
-var G = new Graph();
-G.addVertex('x');
-G.addVertex('y');
-G.addVertex('z');
-
-console.log(G.V);
-
-G.addEdge(0.1, 'x', 'y');
-G.addEdge(0.2, 'y', 'z');
-console.log(G.E);
+// Export both Edge and Graph structures.
+exports.Edge = Edge;
+exports.Graph = Graph;
