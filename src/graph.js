@@ -5,6 +5,11 @@
 
 var exports = module.exports = {};
 
+// Vertex
+var Vertex = function(v) {
+	this.name = v
+}
+
 // Edge
 var Edge = function(w, s, d) {
 	this.weight = w,
@@ -20,10 +25,10 @@ function Graph() {
 
 /*
  * Append a vertex to the graph.
- * v - vertex
+ * v - vertex name
  */
 Graph.prototype.addVertex = function(v) {
-	this.V.push(v);
+	this.V.push(new Vertex (v));
 }
 
 /*
@@ -36,6 +41,7 @@ Graph.prototype.addEdge = function(w, s, d) {
 	this.E.push(new Edge(w,s,d));
 }
 
-// Export both Edge and Graph structures.
+// Export structures.
+exports.Vertex = Vertex;
 exports.Edge = Edge;
 exports.Graph = Graph;
