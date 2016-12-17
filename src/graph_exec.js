@@ -39,9 +39,15 @@ for(var i=0;i<G.E.length;i++) {
 }
 console.log('\n');
 
+
 // Import graph data from a file.
 var gi = require('./graph_import');
 
 var GImport = new gi.GraphImport();
 GImport.parseData();
+
+console.log(GImport.G.V);
+console.log('\n');
+console.log(GImport.G.E);
+console.log('\n');
 

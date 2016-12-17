@@ -5,12 +5,17 @@
 
 var exports = module.exports = {};
 
+// Imports
+var graph = require('./graph');
 fs = require('fs');
+
 
 function GraphImport() {
 	this.srcFile = '../data/graph1.dat';
 	this.data = [];
+	this.G = new graph.Graph();
 	
+	// Read the graph data using the synchronous method.
 	this.data = fs.readFileSync(this.srcFile, 'utf8');
 }
 
@@ -28,13 +33,15 @@ GraphImport.prototype.parseData = function() {
 			break;
 		}
 		else {
-			console.log('Vertex name: ' + this.data[i]);
+			this.G.addVertex(this.data[i]);
 			vCount++;
 		}
 	}
 	
 	var k = 0; // index for edge property.
 	var j = i; // current position in data[];
+	
+	var w, s, d;
 	
 	// Loop over the remaining data and get the edges.
 	while(j < this.data.length) {
@@ -50,9 +57,14 @@ GraphImport.prototype.parseData = function() {
 			}
 			else {
 				switch(k) {
-				case 0: console.log('Edge weight - ' + this.data[j]); break;
-				case 1: console.log('Edge source - ' + this.data[j]); break;
-				case 2: console.log('Edge destination - ' + this.data[j]); eCount++; break;
+				case 0: w = this.data[j]; 
+					break;
+				case 1: s = this.data[j]; 
+					break;
+				case 2: d = this.data[j]; 
+					this.G.addEdge(w, s, d); 
+					eCount++; 
+					break;
 				default: break;
 				}
 				
