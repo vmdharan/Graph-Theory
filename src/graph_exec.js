@@ -4,7 +4,7 @@
  */
 
 // Import the Graph object.
-var graph = require('./Graph');
+var graph = require('./graph');
 
 // Create a new Graph instance.
 var G = new graph.Graph();
@@ -38,3 +38,10 @@ for(var i=0;i<G.E.length;i++) {
 	}
 }
 console.log('\n');
+
+// Import graph data from a file.
+var gi = require('./graph_import');
+
+var GImport = new gi.GraphImport();
+GImport.parseData();
+
