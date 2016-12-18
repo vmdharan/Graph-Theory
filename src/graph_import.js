@@ -27,21 +27,26 @@ GraphImport.prototype.parseData = function() {
 	
 	// Loop over the data and get the vertices.
 	for(var i=0; i<this.data.length; i++) {
+		
+		// Conclude reading a vertex.
 		if((this.data[i] == ',') || (this.data[i] == '\r')) {
 			this.G.addVertex(vertexName);
 			vertexName = '';
+			vCount++;
 			continue;
 		}
+		// Skip over whitespace.
 		else if (this.data[i] == ' ') {
 			continue;
 		}
+		// Finished reading all vertices on the line.
 		else if(this.data[i] == '\n') {
 			i++;
 			break;
 		}
+		// This is a valid character for the vertex name.
 		else {
 			vertexName += this.data[i];
-			vCount++;
 		}
 	}
 	
@@ -58,34 +63,38 @@ GraphImport.prototype.parseData = function() {
 		w = '';
 		s = '';
 		d = '';
+		k = 0;
 		
+		// Read each line and grab the edge data.
 		for( ; j<this.data.length; j++) {
+			
+			// Conclude either the edge weight or the source vertex.
 			if(this.data[j] == ',') { 
 				k++;
 				continue;
 			}
-			// Skip over carriage returns.
-			else if (this.data[j] == '\r') {
+			// Skip over whitespace and carriage returns.
+			else if ((this.data[j] == '\r') || (this.data[j] == ' ')) {
 				continue;
 			}
-			// Skip over whitespace.
-			else if (this.data[j] == ' ') {
-				continue;
-			}
+			// Finished reading the line, so add a new edge.
 			else if(this.data[j] == '\n') {
 				this.G.addEdge(w, s, d); 
 				eCount++; 
 				j++;
-				k = 0;
 				break;
 			}
+			// This is a valid character describing the edge.
 			else {
 				switch(k) {
-				case 0: w += this.data[j]; 
+				case 0: // Edge weight
+					w += this.data[j]; 
 					break;
-				case 1: s += this.data[j]; 
+				case 1: // Source vertex for the edge
+					s += this.data[j]; 
 					break;
-				case 2: d += this.data[j]; 
+				case 2: // Destination vertex for the edge
+					d += this.data[j]; 
 					break;
 				default: break;
 				}
@@ -98,4 +107,3 @@ GraphImport.prototype.parseData = function() {
 }
 
 exports.GraphImport = GraphImport;
-
