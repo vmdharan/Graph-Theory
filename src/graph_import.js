@@ -102,6 +102,10 @@ GraphImport.prototype.parseData = function() {
 		}
 	}
 	
+	// Add in the last edge.
+	this.G.addEdge(w, s, d);
+	eCount++;
+	
 	console.log('Number of vertices read: ' + vCount);
 	console.log('Number of edges read: ' + eCount);
 }
