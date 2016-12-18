@@ -11,7 +11,7 @@ fs = require('fs');
 
 
 function GraphImport() {
-	this.srcFile = '../data/graph1.dat';
+	this.srcFile = './data/graph2.dat';
 	this.data = [];
 	this.G = new graph.Graph();
 	
@@ -23,9 +23,16 @@ GraphImport.prototype.parseData = function() {
 	var vCount = 0;
 	var eCount = 0;
 	
+	var vertexName = '';
+	
 	// Loop over the data and get the vertices.
 	for(var i=0; i<this.data.length; i++) {
-		if((this.data[i] == ',') || (this.data[i] == ' ') || (this.data[i] == '\r')) {
+		if((this.data[i] == ',') || (this.data[i] == '\r')) {
+			this.G.addVertex(vertexName);
+			vertexName = '';
+			continue;
+		}
+		else if (this.data[i] == ' ') {
 			continue;
 		}
 		else if(this.data[i] == '\n') {
@@ -33,7 +40,7 @@ GraphImport.prototype.parseData = function() {
 			break;
 		}
 		else {
-			this.G.addVertex(this.data[i]);
+			vertexName += this.data[i];
 			vCount++;
 		}
 	}
@@ -42,33 +49,46 @@ GraphImport.prototype.parseData = function() {
 	var j = i; // current position in data[];
 	
 	var w, s, d;
+	var edgeWeight = '';
+	var edgeSource = '';
+	var edgeDestination = '';
 	
 	// Loop over the remaining data and get the edges.
 	while(j < this.data.length) {
+		w = '';
+		s = '';
+		d = '';
 		
 		for( ; j<this.data.length; j++) {
-			if((this.data[j] == ',') || (this.data[j] == ' ') || (this.data[j] == '\r')) {
+			if(this.data[j] == ',') { 
+				k++;
 				continue;
-			} 
+			}
+			// Skip over carriage returns.
+			else if (this.data[j] == '\r') {
+				continue;
+			}
+			// Skip over whitespace.
+			else if (this.data[j] == ' ') {
+				continue;
+			}
 			else if(this.data[j] == '\n') {
+				this.G.addEdge(w, s, d); 
+				eCount++; 
 				j++;
 				k = 0;
 				break;
 			}
 			else {
 				switch(k) {
-				case 0: w = this.data[j]; 
+				case 0: w += this.data[j]; 
 					break;
-				case 1: s = this.data[j]; 
+				case 1: s += this.data[j]; 
 					break;
-				case 2: d = this.data[j]; 
-					this.G.addEdge(w, s, d); 
-					eCount++; 
+				case 2: d += this.data[j]; 
 					break;
 				default: break;
 				}
-				
-				k++;
 			}
 		}
 	}
