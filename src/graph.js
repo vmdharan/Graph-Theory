@@ -59,6 +59,24 @@ Graph.prototype.getMinEdge = function() {
 	return this.E[minIndex];
 }
 
+/*
+ * Get the edge containing maximum weight.
+ */
+Graph.prototype.getMaxEdge = function() {
+	var i;
+	var maxWeight = -65536;
+	var maxIndex = -1;
+	
+	for(i=0; i<this.E.length; i++) {
+		if(this.E[i].weight >= maxWeight) {
+			maxWeight = this.E[i].weight;
+			maxIndex = i;
+		}
+	}
+	
+	return this.E[maxIndex];
+}
+
 
 // Export structures.
 exports.Vertex = Vertex;
