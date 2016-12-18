@@ -41,6 +41,25 @@ Graph.prototype.addEdge = function(w, s, d) {
 	this.E.push(new Edge(w,s,d));
 }
 
+/*
+ * Get the edge containing minimum weight.
+ */
+Graph.prototype.getMinEdge = function() {
+	var i;
+	var minWeight = 65536;
+	var minIndex = -1;
+	
+	for(i=0; i<this.E.length; i++) {
+		if(this.E[i].weight <= minWeight) {
+			minWeight = this.E[i].weight;
+			minIndex = i;
+		}
+	}
+	
+	return this.E[minIndex];
+}
+
+
 // Export structures.
 exports.Vertex = Vertex;
 exports.Edge = Edge;

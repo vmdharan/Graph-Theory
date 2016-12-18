@@ -22,3 +22,7 @@ for(var i=0;i<GImport.G.E.length;i++) {
 		console.log(GImport.G.E[i]);
 	}
 }
+
+// Get the edge containing minimum weight.
+console.log('minimum edge')
+console.log(GImport.G.getMinEdge());
