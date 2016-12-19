@@ -17,7 +17,7 @@ console.log('\n');
 console.log(GImport.G.E);
 console.log('\n');
 
-//Display edges where vertex 'myVertex' is either a source or destination.
+// Display edges where vertex 'myVertex' is either a source or destination.
 var myVertex = new gr.Vertex('v1');
 var connectedEdges = GImport.G.getConnectedEdges(myVertex.name);
 console.log('connected edges for: ' + myVertex.name);
@@ -27,6 +27,14 @@ console.log(connectedEdges);
 console.log('minimum edge')
 console.log(GImport.G.getMinEdge());
 
-//Get the edge containing maximum weight.
+// Get the edge containing maximum weight.
 console.log('maximum edge')
 console.log(GImport.G.getMaxEdge());
+
+console.log('\n');
+
+// Get the outbound edges for myVertex2.
+var myVertex2 = new gr.Vertex('y1');
+var outboundEdges = GImport.G.getOutboundEdges(myVertex2.name);
+console.log('outbound edges for: ' + myVertex2.name);
+console.log(outboundEdges);

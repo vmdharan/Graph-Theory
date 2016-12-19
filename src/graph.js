@@ -85,9 +85,26 @@ Graph.prototype.getConnectedEdges = function(v) {
 	var i;
 	var edges = [];
 	
-	for(i=0; i<this.E.length;i++) {
+	for(i=0; i<this.E.length; i++) {
 		if((this.E[i]['source'] == v) || (this.E[i]['destination'] == v)) {
-			edges.push(this.E[i]) ;
+			edges.push(this.E[i]);
+		}
+	}
+	
+	return edges;
+}
+
+/*
+ * Return all outbound edges for a given vertex.
+ * v - the vertex to query for.
+ */
+Graph.prototype.getOutboundEdges = function(v) {
+	var i;
+	var edges = [];
+	
+	for(i=0; i<this.E.length; i++) {
+		if(this.E[i]['source'] == v) {
+			edges.push(this.E[i]);
 		}
 	}
 	
