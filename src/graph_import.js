@@ -108,6 +108,7 @@ GraphImport.prototype.parseData = function() {
 	
 	console.log('Number of vertices read: ' + vCount);
 	console.log('Number of edges read: ' + eCount);
+	console.log('\n');
 }
 
 exports.GraphImport = GraphImport;

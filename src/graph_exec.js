@@ -38,3 +38,9 @@ var myVertex2 = new gr.Vertex('y1');
 var outboundEdges = GImport.G.getOutboundEdges(myVertex2.name);
 console.log('outbound edges for: ' + myVertex2.name);
 console.log(outboundEdges);
+
+//Get the inbound edges for myVertex3.
+var myVertex3 = new gr.Vertex('w1');
+var inboundEdges = GImport.G.getInboundEdges(myVertex3.name);
+console.log('inbound edges for: ' + myVertex3.name);
+console.log(inboundEdges);
