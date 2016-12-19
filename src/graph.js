@@ -128,6 +128,28 @@ Graph.prototype.getInboundEdges = function(v) {
 	return edges;
 }
 
+/*
+ * Get the index of a specific edge in the graph if it exists, -1 otherwise.
+ * w - Edge weight
+ * s - Edge source
+ * d - Edge destination
+ */
+Graph.prototype.getEdgeIndex = function(w, s, d) {
+	var i;
+	var edgeIndex = -1;
+	
+	for(i=0; i<this.E.length; i++) {
+		if((this.E[i]['weight'] == w) && (this.E[i]['source'] == s) 
+				&& (this.E[i]['destination'] == d)) {
+			edgeIndex = i;
+			break;
+		} 
+	}
+	
+	return edgeIndex;
+}
+
+
 // Export structures.
 exports.Vertex = Vertex;
 exports.Edge = Edge;

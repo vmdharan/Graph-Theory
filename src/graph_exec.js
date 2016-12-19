@@ -44,3 +44,10 @@ var myVertex3 = new gr.Vertex('w1');
 var inboundEdges = GImport.G.getInboundEdges(myVertex3.name);
 console.log('inbound edges for: ' + myVertex3.name);
 console.log(inboundEdges);
+
+// Get the edge index for myEdge.
+var myEdge = new gr.Edge('0.2', 'y1', 'x1');
+var edgeIndex = GImport.G.getEdgeIndex(myEdge.weight, myEdge.source, myEdge.destination);
+console.log('edge index: ' + edgeIndex);
+
+
