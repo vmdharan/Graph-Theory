@@ -16,12 +16,10 @@ console.log('\n');
 console.log(GImport.G.E);
 console.log('\n');
 
-//Display edges where vertex 'x' is either a source or destination.
-for(var i=0;i<GImport.G.E.length;i++) {
-	if((GImport.G.E[i]['source'] == 'x') || (GImport.G.E[i]['destination'] == 'x')) {
-		console.log(GImport.G.E[i]);
-	}
-}
+//Display edges where vertex 'v1' is either a source or destination.
+var connectedEdges = GImport.G.getConnectedEdges('v1');
+console.log('connected edges for: ' + 'v1');
+console.log(connectedEdges);
 
 // Get the edge containing minimum weight.
 console.log('minimum edge')

@@ -6,12 +6,12 @@
 var exports = module.exports = {};
 
 // Vertex
-var Vertex = function(v) {
+function Vertex (v) {
 	this.name = v
 }
 
 // Edge
-var Edge = function(w, s, d) {
+function Edge (w, s, d) {
 	this.weight = w,
 	this.source = s,
 	this.destination = d
@@ -28,7 +28,7 @@ function Graph() {
  * v - vertex name
  */
 Graph.prototype.addVertex = function(v) {
-	this.V.push(new Vertex (v));
+	this.V.push(new Vertex(v));
 }
 
 /*
@@ -77,6 +77,22 @@ Graph.prototype.getMaxEdge = function() {
 	return this.E[maxIndex];
 }
 
+/*
+ * Get edges connected to a given vertex.
+ * v - the vertex to query for.
+ */
+Graph.prototype.getConnectedEdges = function(v) {
+	var i;
+	var edges = [];
+	
+	for(i=0; i<this.E.length;i++) {
+		if((this.E[i]['source'] == v) || (this.E[i]['destination'] == v)) {
+			edges.push(this.E[i]) ;
+		}
+	}
+	
+	return edges;
+}
 
 // Export structures.
 exports.Vertex = Vertex;
