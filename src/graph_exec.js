@@ -4,6 +4,7 @@
  */
 
 // Imports
+var gr = require('./graph');
 var gi = require('./graph_import');
 
 // Create a new instance.
@@ -16,9 +17,10 @@ console.log('\n');
 console.log(GImport.G.E);
 console.log('\n');
 
-//Display edges where vertex 'v1' is either a source or destination.
-var connectedEdges = GImport.G.getConnectedEdges('v1');
-console.log('connected edges for: ' + 'v1');
+//Display edges where vertex 'myVertex' is either a source or destination.
+var myVertex = new gr.Vertex('v1');
+var connectedEdges = GImport.G.getConnectedEdges(myVertex.name);
+console.log('connected edges for: ' + myVertex.name);
 console.log(connectedEdges);
 
 // Get the edge containing minimum weight.
