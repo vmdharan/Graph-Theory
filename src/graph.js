@@ -78,6 +78,42 @@ Graph.prototype.getMaxEdge = function() {
 }
 
 /*
+ * Drop the edge containing minimum weight from the list and return it.
+ */
+Graph.prototype.dropMinEdge = function() {
+	var i;
+	var minWeight = 65536;
+	var minIndex = -1;
+	
+	for(i=0; i<this.E.length; i++) {
+		if(this.E[i].weight <= minWeight) {
+			minWeight = this.E[i].weight;
+			minIndex = i;
+		}
+	}
+	
+	return this.E.splice(minIndex, 1)[0];
+}
+
+/*
+ * Drop the edge containing maximum weight from the list and return it.
+ */
+Graph.prototype.dropMaxEdge = function() {
+	var i;
+	var maxWeight = -65536;
+	var maxIndex = -1;
+	
+	for(i=0; i<this.E.length; i++) {
+		if(this.E[i].weight >= maxWeight) {
+			maxWeight = this.E[i].weight;
+			maxIndex = i;
+		}
+	}
+	
+	return this.E.splice(maxIndex, 1)[0];
+}
+
+/*
  * Get edges connected to a given vertex.
  * v - the vertex to query for.
  */

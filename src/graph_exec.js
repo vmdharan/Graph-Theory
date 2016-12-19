@@ -48,6 +48,11 @@ console.log(inboundEdges);
 // Get the edge index for myEdge.
 var myEdge = new gr.Edge('0.2', 'y1', 'x1');
 var edgeIndex = GImport.G.getEdgeIndex(myEdge.weight, myEdge.source, myEdge.destination);
-console.log('edge index: ' + edgeIndex);
+console.log('edge index: ' + edgeIndex + '\n');
 
-
+// Drop the minimum edge.
+console.log(GImport.G.dropMinEdge());
+// Drop the maximum edge.
+console.log(GImport.G.dropMaxEdge());
+console.log('Remaining edges');
+console.log(GImport.G.E);
